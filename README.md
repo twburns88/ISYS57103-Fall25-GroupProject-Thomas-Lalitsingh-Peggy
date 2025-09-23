@@ -16,7 +16,7 @@ The system uses a **multi-agent approach** with specialized AI tasks:
 
 ---
 
-## Integration & Data Sources
+## Launch Strategy
 
 We'll start with a mobile web app focusing on a few major retailers in the local area, with plans to expand based on what works best. The end result should be something people would actually want to use when they can't find what they're looking for at the store.
 
