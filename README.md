@@ -2,7 +2,7 @@
 
 ## Project Abstract
 
-For this project, we propose to build an **agentic AI system** to solve one of the most frustrating shopping problems for customers: **out-of-stock items**.  Picture this: you drive to the pharmacy for cold medicine when you're sick, only to find empty shelves, then waste time calling other stores or driving around town hoping to get lucky.  Our solution leverages **computer vision** to scan products (via a phone camera), then searches multiple retailers and locations to find where the item is actually available.  
+For this project, we propose to build an agentic AI system to solve one of the most frustrating shopping problems for customers: out-of-stock items.  Picture this: you drive to the pharmacy for cold medicine when you're sick, only to find empty shelves, then waste time calling other stores or driving around town hoping to get lucky.  Our solution leverages computer vision to scan products (via a phone camera), then searches multiple retailers and locations to find where the item is actually available.  
 
 ---
 
@@ -24,4 +24,4 @@ We'll start with a mobile web app focusing on a few major retailers in the local
 
 ## Expected Outcome
 
-The end result will be a system that **saves time and frustration** for shoppers, providing a tool people will actually want to use when they can’t find what they’re looking for in-store.
+The end result will be a system that saves time and frustration for shoppers, providing a tool people will actually want to use when they can’t find what they’re looking for in-store.
