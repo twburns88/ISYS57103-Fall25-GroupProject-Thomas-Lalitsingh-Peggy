@@ -1,1 +1,4 @@
 google-search-results
+flask
+python-dotenv
+requests
