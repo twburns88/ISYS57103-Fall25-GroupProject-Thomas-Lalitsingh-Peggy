@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Finder - AI Inventory Locator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .upload-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .upload-zone {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 60px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+        }
+
+        .upload-zone:hover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+
+        .upload-zone.dragover {
+            border-color: #764ba2;
+            background: #e8eaff;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .preview-image {
+            max-width: 300px;
+            max-height: 300px;
+            margin: 20px auto;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .ocr-result {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .ocr-result h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .extracted-text {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin: 10px 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .product-source {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .store-section {
+            margin: 30px 0;
+        }
+
+        .store-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .store-card {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .store-nearby {
+            border-left-color: #4caf50;
+        }
+
+        .store-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .store-price {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .store-details {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px 5px 5px 0;
+        }
+
+        .badge-online {
+            background: #2196f3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-btn {
+            background: #6c757d;
+        }
+
+        #productDetails {
+            display: none;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-images {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .product-images img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Product Finder</h1>
+            <p class="subtitle">Upload a product image to find where it's available nearby</p>
+        </header>
+
+        <!-- Main Upload Section -->
+        <div id="uploadSection" class="main-card">
+            <div class="upload-section">
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">📸</div>
+                    <h2>Upload Product Image</h2>
+                    <p>Click to browse or drag and drop an image here</p>
+                    <input type="file" id="fileInput" accept="image/*" capture="environment">
+                </div>
+
+                <img id="previewImage" class="preview-image" alt="Preview">
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Processing your image...</p>
+                </div>
+
+                <div id="ocrResult" class="ocr-result">
+                    <h3>Extracted Text:</h3>
+                    <div class="extracted-text" id="extractedText"></div>
+                    <button class="btn" onclick="searchProducts()">Search for Products</button>
+                    <button class="btn back-btn" onclick="resetUpload()">Upload Different Image</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Search Results -->
+        <div id="searchResults" class="main-card hidden">
+            <h2 style="margin-bottom: 20px; color: #667eea;">Select Your Product</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click on the product that matches what you're looking for:</p>
+            <div id="productsGrid" class="products-grid"></div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn back-btn" onclick="backToOCR()">Back to Search</button>
+            </div>
+        </div>
+
+        <!-- Product Details with Store Locations -->
+        <div id="productDetails" class="main-card">
+            <button class="btn back-btn" onclick="backToResults()" style="margin-bottom: 20px;">← Back to Results</button>
+
+            <div class="product-header">
+                <h2 id="productTitle"></h2>
+                <div id="productImages" class="product-images"></div>
+                <p id="productInfo" style="color: #666; margin-top: 10px;"></p>
+            </div>
+
+            <div id="loadingStores" class="loading">
+                <div class="spinner"></div>
+                <p>Finding nearby stores...</p>
+            </div>
+
+            <div id="storesContainer">
+                <div id="nearbyStores" class="store-section"></div>
+                <div id="onlineStores" class="store-section"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSearchQuery = '';
+        let currentProducts = [];
+
+        // Upload zone drag and drop
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const previewImage = document.getElementById('previewImage');
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileUpload(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileUpload(e.target.files[0]);
+            }
+        });
+
+        function handleFileUpload(file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showError('Please upload an image file');
+                return;
+            }
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+
+            // Upload to server
+            uploadImage(file);
+        }
+
+        async function uploadImage(file) {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showLoading(true);
+            hideError();
+            hideSuccess();
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentSearchQuery = data.extracted_text;
+                    document.getElementById('extractedText').textContent = data.extracted_text;
+                    document.getElementById('ocrResult').style.display = 'block';
+                    showSuccess('Text extracted successfully! Review and click "Search for Products"');
+                } else {
+                    showError(data.error || 'Failed to process image');
+                    previewImage.style.display = 'none';
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function searchProducts() {
+            if (!currentSearchQuery) {
+                showError('No search query available');
+                return;
+            }
+
+            showLoading(true);
+            hideError();
+
+            try {
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: currentSearchQuery })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentProducts = data.products;
+                    displayProducts(data.products);
+                    document.getElementById('uploadSection').classList.add('hidden');
+                    document.getElementById('searchResults').classList.remove('hidden');
+                } else {
+                    showError(data.error || 'Failed to search products');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            products.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => selectProduct(product, index);
+
+                card.innerHTML = `
+                    <img src="${product.thumbnail || 'https://via.placeholder.com/200'}" alt="${product.title}">
+                    <div class="product-title">${product.title}</div>
+                    <div class="product-price">${product.price}</div>
+                    <div class="product-source">${product.source}</div>
+                    ${product.rating ? `<div style="color: #ffa500; font-size: 0.9em;">★ ${product.rating} (${product.reviews || 0})</div>` : ''}
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        async function selectProduct(product, index) {
+            if (!product.page_token) {
+                showError('Product token not available');
+                return;
+            }
+
+            document.getElementById('searchResults').classList.add('hidden');
+            document.getElementById('productDetails').style.display = 'block';
+            document.getElementById('loadingStores').style.display = 'block';
+            document.getElementById('storesContainer').style.display = 'none';
+
+            try {
+                const response = await fetch(`/product/${encodeURIComponent(product.page_token)}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayProductDetails(data);
+                } else {
+                    showError(data.error || 'Failed to load product details');
+                    backToResults();
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+                backToResults();
+            } finally {
+                document.getElementById('loadingStores').style.display = 'none';
+                document.getElementById('storesContainer').style.display = 'block';
+            }
+        }
+
+        function displayProductDetails(data) {
+            // Product header
+            document.getElementById('productTitle').textContent = data.product.title;
+
+            const infoText = [];
+            if (data.product.brand) infoText.push(data.product.brand);
+            if (data.product.rating) infoText.push(`★ ${data.product.rating} (${data.product.reviews || 0} reviews)`);
+            if (data.product.price_range) infoText.push(`Price Range: ${data.product.price_range}`);
+            document.getElementById('productInfo').textContent = infoText.join(' • ');
+
+            // Product images
+            const imagesContainer = document.getElementById('productImages');
+            imagesContainer.innerHTML = '';
+            if (data.product.thumbnails && data.product.thumbnails.length > 0) {
+                data.product.thumbnails.forEach(img => {
+                    const imgEl = document.createElement('img');
+                    imgEl.src = img;
+                    imagesContainer.appendChild(imgEl);
+                });
+            }
+
+            // Nearby stores
+            const nearbyContainer = document.getElementById('nearbyStores');
+            nearbyContainer.innerHTML = '';
+            if (data.nearby_stores && data.nearby_stores.length > 0) {
+                nearbyContainer.innerHTML = '<h3>🎯 Available Nearby</h3>';
+                data.nearby_stores.forEach(store => {
+                    nearbyContainer.innerHTML += createStoreCard(store, true);
+                });
+            }
+
+            // Online stores
+            const onlineContainer = document.getElementById('onlineStores');
+            onlineContainer.innerHTML = '';
+            if (data.online_stores && data.online_stores.length > 0) {
+                onlineContainer.innerHTML = '<h3>📦 Online Options</h3>';
+                data.online_stores.forEach(store => {
+                    onlineContainer.innerHTML += createStoreCard(store, false);
+                });
+            }
+
+            if (data.nearby_stores.length === 0 && data.online_stores.length === 0) {
+                nearbyContainer.innerHTML = '<p style="color: #666;">No store information available for this product.</p>';
+            }
+        }
+
+        function createStoreCard(store, isNearby) {
+            const details = store.details.join(' • ');
+            const badge = isNearby
+                ? '<span class="badge">NEARBY</span>'
+                : '<span class="badge badge-online">ONLINE</span>';
+
+            return `
+                <div class="store-card ${isNearby ? 'store-nearby' : ''}">
+                    <div class="store-name">${store.name} ${badge}</div>
+                    <div class="store-price">${store.price}</div>
+                    ${store.total !== store.price ? `<div class="store-details">Total with shipping: ${store.total}</div>` : ''}
+                    ${store.rating ? `<div class="store-details">★ ${store.rating} (${store.reviews || 0} reviews)</div>` : ''}
+                    <div class="store-details">${details}</div>
+                    ${store.link ? `<a href="${store.link}" target="_blank" class="btn" style="display: inline-block; margin-top: 10px; padding: 10px 20px; font-size: 0.9em;">View at Store →</a>` : ''}
+                </div>
+            `;
+        }
+
+        function backToResults() {
+            document.getElementById('productDetails').style.display = 'none';
+            document.getElementById('searchResults').classList.remove('hidden');
+        }
+
+        function backToOCR() {
+            document.getElementById('searchResults').classList.add('hidden');
+            document.getElementById('uploadSection').classList.remove('hidden');
+        }
+
+        function resetUpload() {
+            document.getElementById('ocrResult').style.display = 'none';
+            document.getElementById('previewImage').style.display = 'none';
+            document.getElementById('fileInput').value = '';
+            currentSearchQuery = '';
+            hideError();
+            hideSuccess();
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            const successEl = document.getElementById('successMessage');
+            successEl.textContent = message;
+            successEl.style.display = 'block';
+        }
+
+        function hideSuccess() {
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
