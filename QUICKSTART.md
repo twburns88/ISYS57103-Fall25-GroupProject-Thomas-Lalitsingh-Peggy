@@ -96,7 +96,7 @@ pip install -r requirements.txt
 
 ### Issue: Port 5000 already in use
 **Solution:**
-- Stop other processes using port 5000, OR
+- Stop other processes using port 5000
 
 
 ### Issue: "No text detected in image"
