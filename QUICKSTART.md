@@ -1,13 +1,5 @@
 # Quick Start Guide - Product Finder App
 
-## What You Built
-
-A complete image-to-product-finder web application with:
-- Image upload with OCR text extraction
-- Product search via Google Shopping
-- Nearby vs online store availability
-- Price comparison across retailers
-
 ## Architecture
 
 ```
@@ -113,16 +105,6 @@ Monitor your API usage to stay within free tiers:
 - **SerpAPI:** https://serpapi.com/dashboard (100 free searches/month)
 - **Google Cloud Vision:** https://console.cloud.google.com (1000 free requests/month)
 
-## For Your Report/Presentation
-
-Key metrics to highlight:
-
-- **Two-step pipeline:** Generic search → User confirmation → Location lookup
-- **APIs integrated:** Google Cloud Vision, SerpAPI (Google Shopping + Immersive Product)
-- **User flow:** Image upload → OCR → Search → Select → Results (4 steps)
-- **Technology stack:** Python, Flask, HTML/CSS/JavaScript
-- **Scope:** Proof of concept for academic project
-
 ## Shutting Down
 
 To stop the server:
@@ -133,15 +115,3 @@ To deactivate virtual environment:
 deactivate
 ```
 
----
-
-**Success Criteria:**
-- [ ] Server starts without errors
-- [ ] Health check returns "healthy"
-- [ ] Can upload image successfully
-- [ ] OCR extracts text from image
-- [ ] Product search returns results
-- [ ] Product details show store locations
-- [ ] Nearby vs online stores are differentiated
-
-**Next:** Test with a real product image and document results for your project report!
