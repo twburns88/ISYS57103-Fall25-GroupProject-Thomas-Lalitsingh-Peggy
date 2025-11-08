@@ -1,5 +1,6 @@
 # Quick Start Guide - Product Finder App
 
+
 ## Architecture
 
 ```
@@ -31,7 +32,7 @@ Display nearby stores + pricing
 ### 1. Activate Virtual Environment
 
 ```bash
-cd "/Users/thomasburns/Documents/MISGrad/Fall 2025/Demystifying AI/AI-Project"
+cd "/Users/path-to-repo"
 source .venv/bin/activate
 ```
 
@@ -88,7 +89,7 @@ pip install -r requirements.txt
 
 ### Issue: Port 5000 already in use
 **Solution:**
-- Stop other processes using port 5000, OR
+- Stop other processes using port 5000
 
 
 ### Issue: "No text detected in image"
