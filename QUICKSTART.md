@@ -1,12 +1,5 @@
 # Quick Start Guide - Product Finder App
 
-## What You Built
-
-A complete image-to-product-finder web application with:
-- Image upload with OCR text extraction
-- Product search via Google Shopping
-- Nearby vs online store availability
-- Price comparison across retailers
 
 ## Architecture
 
