@@ -1,0 +1,54 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (except README)
+*.md
+!README.md
+
+# Test results and data
+test_results/
+training_data/
+*.ipynb_checkpoints
+
+# Model weights
+models/*.pt
+models/*.pth
+models/*.weights
+
+# Pytest cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Uploads
+ui/uploads/*
+ui/test_uploads/*

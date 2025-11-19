@@ -1,5 +1,8 @@
 # Environment variables
 .env
+.env.development
+.env.testing
+.env.production
 
 # Virtual environment
 .venv/
@@ -28,6 +31,10 @@ __pycache__/
 # Upload directories
 ui/uploads/*
 !ui/uploads/.gitkeep
+ui/test_uploads/
+
+# Docker volumes
+docker-volumes/
 
 # Test outputs (keep test images but ignore generated outputs)
 tests/test_images/*_extracted_text.txt
@@ -43,3 +50,8 @@ instance/
 *.egg-info/
 dist/
 build/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
