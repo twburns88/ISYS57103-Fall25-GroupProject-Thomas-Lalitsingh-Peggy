@@ -9,6 +9,10 @@ import sys
 from pathlib import Path
 from werkzeug.utils import secure_filename
 import uuid
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -18,18 +22,22 @@ from backend.api.serpapi_client import get_product_results, get_product_location
 from backend.config import SERPAPI_KEY
 
 app = Flask(__name__)
+
+# Configuration from environment variables
+FLASK_ENV = os.getenv('FLASK_ENV', 'development')
+FLASK_DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-key-change-in-production')
 
-# Configuration
-UPLOAD_FOLDER = Path(__file__).parent / 'uploads'
+# File upload configuration
+UPLOAD_FOLDER = Path(os.getenv('UPLOAD_FOLDER', 'ui/uploads'))
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp'}
-MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+MAX_FILE_SIZE = int(os.getenv('MAX_UPLOAD_SIZE', 10 * 1024 * 1024))  # Default 10MB
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE
 
 # Create upload folder if it doesn't exist
-UPLOAD_FOLDER.mkdir(exist_ok=True)
+UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # Get API keys from environment
 GOOGLE_VISION_API_KEY = os.getenv('GOOGLE_CLOUD_API_KEY')
@@ -248,12 +256,23 @@ def request_entity_too_large(error):
 
 
 if __name__ == '__main__':
-    # Check for required API keys
+    # Validate configuration
     if not GOOGLE_VISION_API_KEY:
         print("WARNING: GOOGLE_CLOUD_API_KEY environment variable not set")
     if not SERPAPI_KEY:
         print("WARNING: SERPAPI_KEY environment variable not set")
 
-    print(f"User location set to: {USER_LOCATION}")
+    # Production safety check
+    if FLASK_ENV == 'production' and app.secret_key == 'dev-secret-key-change-in-production':
+        raise ValueError(
+            "CRITICAL: Cannot run in production with default secret key! "
+            "Please set FLASK_SECRET_KEY environment variable to a secure random string."
+        )
+
+    print(f"Environment: {FLASK_ENV}")
+    print(f"Debug mode: {FLASK_DEBUG}")
+    print(f"User location: {USER_LOCATION}")
+    print(f"Upload folder: {UPLOAD_FOLDER}")
     print("Starting Flask server...")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+
+    app.run(debug=FLASK_DEBUG, host='0.0.0.0', port=5000)

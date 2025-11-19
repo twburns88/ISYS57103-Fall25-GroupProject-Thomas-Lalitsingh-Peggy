@@ -1,4 +1,21 @@
+# Core dependencies
 google-search-results
 flask
 python-dotenv
 requests
+opencv-python
+numpy
+pillow
+
+# Machine Learning
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Production server
+gunicorn==21.2.0
+
+# Testing
+pytest==7.4.3
+pytest-mock==3.12.0
+pytest-cov==4.1.0

@@ -1,4 +1,4 @@
-# Quick Start Guide - Product Finder App
+# Quick Start Guide - AI-Powered Inventory Locator
 
 
 ## Architecture
@@ -19,7 +19,65 @@ SerpAPI Google Immersive Product API
 Display nearby stores + pricing
 ```
 
-## Prerequisites Checklist
+## Quick Start (Docker - Recommended)
+
+Docker provides the fastest and most consistent setup experience.
+
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed
+- API keys from:
+  - [SerpAPI](https://serpapi.com/) - 100 free searches/month
+  - [Google Cloud Vision](https://console.cloud.google.com/) - 1000 free requests/month
+
+### Setup Steps
+
+1. **Clone and navigate to the repository**
+   ```bash
+   cd AI-Project
+   ```
+
+2. **Configure environment variables**
+   ```bash
+   # Copy the template
+   cp .env.development .env.development
+
+   # Edit and add your API keys
+   # SERPAPI_KEY=your_key_here
+   # GOOGLE_CLOUD_API_KEY=your_key_here
+   ```
+
+3. **Start the application**
+   ```bash
+   ./scripts/run_local.sh
+   ```
+
+   Or manually:
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Access the application**
+
+   Open your browser to: **http://localhost:5000**
+
+5. **Test it out**
+   - Upload a product image
+   - Wait for OCR processing
+   - Search for products
+   - View nearby store availability
+
+That's it! The application is now running in an isolated Docker container with all dependencies installed.
+
+For detailed Docker documentation, see [docs/DOCKER_SETUP.md](docs/DOCKER_SETUP.md)
+
+---
+
+## Alternative: Traditional Python Setup
+
+If you prefer to run without Docker:
+
+### Prerequisites Checklist
 
 - [ ] Python 3.9+ installed
 - [ ] Virtual environment activated
@@ -27,7 +85,7 @@ Display nearby stores + pricing
 - [ ] SerpAPI key obtained
 - [ ] `.env` file configured
 
-## Step-by-Step Launch
+### Step-by-Step Launch
 
 ### 1. Activate Virtual Environment
 

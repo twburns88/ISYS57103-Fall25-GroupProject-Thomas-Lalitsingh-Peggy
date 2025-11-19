@@ -1,0 +1,19 @@
+services:
+  test:
+    build:
+      context: .
+      target: development
+    container_name: ai-project-test
+    env_file:
+      - .env.testing
+    environment:
+      - FLASK_ENV=testing
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount source code for testing
+      - .:/app
+      # Prevent local venv from being mounted
+      - /app/.venv
+      # Prevent pycache pollution
+      - /app/__pycache__
+    command: pytest tests/ -v --tb=short --color=yes
