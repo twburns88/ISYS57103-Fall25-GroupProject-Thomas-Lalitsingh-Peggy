@@ -1,13 +1,13 @@
 # Team Setup Guide - AI-Powered Inventory Locator
 **Getting Started with Docker (GUI-Friendly Version)**
 
-## What You'll Need (15 minutes total)
+## What You'll Need
 
 ### Before You Start
 1. **Docker Desktop** - Download and install
 2. **GitHub Desktop** (recommended) - Makes Git easier
-3. **A text editor** - VS Code, Sublime Text, or even Notepad
-4. **API Keys** - Thomas will provide these
+3. **A text editor** - VS Code
+4. **API Keys** - You'll need to create your own (see Step 3 below)
 
 ---
 
@@ -15,7 +15,7 @@
 
 Since you already have the repository, you need to pull the latest changes:
 
-### Using GitHub Desktop (Easiest)
+### Using GitHub Desktop
 
 1. **Open GitHub Desktop**
 2. **Make sure you're on the main branch**
@@ -42,7 +42,7 @@ Since you already have the repository, you need to pull the latest changes:
 
 ---
 
-## Step 2: Install Docker Desktop (5 minutes)
+## Step 2: Install Docker Desktop 
 
 **Skip this if you already have Docker Desktop installed**
 
@@ -57,44 +57,29 @@ Since you already have the repository, you need to pull the latest changes:
 
 ---
 
-## Step 3: Add Your API Keys (3 minutes)
+## Step 3: Get Your API Keys
 
-### Find the Project Folder
-Navigate to where you have the project saved (e.g., `Documents/AI-Project`)
+You need to create your own API keys for SerpAPI and Google Cloud Vision.
 
-### Create Your Environment File
+### Follow the API Key Setup Guide
 
-1. **Find the template file:**
-   - Look for a file called `.env.development` in the project folder
-   - **Windows users:** You may need to enable "Show hidden files"
-     - Open File Explorer → Click "View" → Check "Hidden items"
-   - **Mac users:** Press `Cmd + Shift + .` (period) to show hidden files
+**See the detailed guide:** [docs/API_KEY_SETUP.md](API_KEY_SETUP.md)
 
-2. **Open the file in a text editor:**
-   - **Right-click** `.env.development` → "Open With" → Choose your text editor
-   - VS Code, Sublime Text, Notepad++, or even Notepad/TextEdit work fine
+This guide walks you through:
+1. Creating a SerpAPI account and getting your key
+2. Setting up Google Cloud Vision API and getting your key
+3. Adding both keys to your `.env.development` file
 
-3. **Replace the placeholder keys:**
+**Quick summary:**
+1. **SerpAPI**: Sign up at https://serpapi.com/ (100 free searches/month)
+2. **Google Cloud Vision**: Create project at https://console.cloud.google.com/ (1,000 free requests/month)
+3. Add both keys to `.env.development` file in your project folder
 
-   Find these lines:
-   ```
-   SERPAPI_KEY=your_dev_serpapi_key_here
-   GOOGLE_CLOUD_API_KEY=your_dev_google_api_key_here
-   ```
-
-   Replace with the actual keys (Thomas will provide these):
-   ```
-   SERPAPI_KEY=dd8ea6c63be1360a9345adc8f09804cbe94af17abc6ed1a876eb973ae57f5477
-   GOOGLE_CLOUD_API_KEY=AIzaSyA4lD7GUk2rzgFwS3sDI_1liYdirkJntAI
-   ```
-
-4. **Save the file** (File → Save or Ctrl+S / Cmd+S)
-
-**Important:** Keep these API keys private! Don't share them publicly.
+**Important:** Keep your API keys private! Don't share them publicly or commit them to GitHub.
 
 ---
 
-## Step 4: Start the Application (2 minutes)
+## Step 4: Start the Application
 
 ### Using Docker Desktop GUI
 
@@ -274,13 +259,6 @@ GOOGLE_CLOUD_API_KEY=AIzaSyA4lD7GUk2rzgFwS3sDI_1liYdirkJntAI
 
 ---
 
-### Need More Help?
-1. **Check the detailed docs:** Open `docs/DOCKER_SETUP.md` in the project folder
-2. **Ask Thomas** - Share your error message!
-3. **Check Docker Desktop logs** - They show helpful error messages
-
----
-
 ## Understanding the Project Structure
 
 You don't need to understand all this, but it helps to know what's what:
@@ -338,27 +316,10 @@ Windows: docker-compose up
 
 ---
 
-## Success Checklist
-
-After setup, verify these items:
-
-- [ ] Docker Desktop installed and running (whale icon visible)
-- [ ] Latest code pulled from GitHub
-- [ ] `.env.development` file has API keys
-- [ ] Can run `docker-compose up` without errors
-- [ ] Can access http://localhost:5000 in browser
-- [ ] Can upload an image and see it processed
-- [ ] Can search for products and see results
-
-**All checked?** You're ready to develop!
-
----
-
-## Pro Tips
 
 1. **Keep Docker Desktop open** while working - it needs to be running for containers to work
 2. **Don't delete the container** in Docker Desktop - just stop/start it
-3. **First build takes 2-3 minutes** - subsequent builds are much faster
+3. **First build can take 2-3 minutes** - subsequent builds are much faster
 4. **Use Docker Desktop Dashboard** - Great way to see what's running and view logs visually
 5. **Hard refresh often** - Browser caching can hide your changes (Ctrl+Shift+R / Cmd+Shift+R)
 
@@ -386,7 +347,3 @@ After setup, verify these items:
 - Don't commit random files - Only commit code you changed
 
 ---
-
-**Questions?** Ask Thomas or check the detailed documentation in `docs/DOCKER_SETUP.md`
-
-**Happy Coding!**
