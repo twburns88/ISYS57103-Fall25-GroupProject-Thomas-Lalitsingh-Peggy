@@ -230,8 +230,8 @@ kill -9 <PID>
 
 **Format should look exactly like:**
 ```
-SERPAPI_KEY=dd8ea6c63be1360a9345adc8f09804cbe94af17abc6ed1a876eb973ae57f5477
-GOOGLE_CLOUD_API_KEY=AIzaSyA4lD7GUk2rzgFwS3sDI_1liYdirkJntAI
+SERPAPI_KEY=your_actual_serpapi_key_here
+GOOGLE_CLOUD_API_KEY=your_actual_google_api_key_here
 ```
 
 ---
