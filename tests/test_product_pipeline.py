@@ -12,7 +12,7 @@ import os
 # Add parent directory to path to allow imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from backend.api.serpapi_client import get_product_results, get_product_locations
+from backend.api.api_retrieval import get_product_results, get_product_locations
 import json
 
 def test_pipeline():

@@ -18,7 +18,7 @@ load_dotenv()
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from models.ocr_processor import extract_text_from_image
-from backend.api.serpapi_client import get_product_results, get_product_locations
+from backend.api.api_retrieval import get_product_results, get_product_locations
 from backend.config import SERPAPI_KEY
 
 app = Flask(__name__)
