@@ -21,15 +21,16 @@ SerpAPI provides access to Google Shopping search results.
 
 ### Step 3: Get Your API Key
 1. After logging in, you'll see your dashboard
-2. Look for **"Your Private API Key"** section
+2. Look for **"Your Private API Key"** section (or navigate to [Dashboard → API Key](https://serpapi.com/manage-api-key))
 3. You'll see something like: `a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6...`
 4. Click the **Copy** button
 5. **Save this somewhere safe**
 
 ### Free Tier Includes:
-- 100 searches per month
+- **100 searches per month**
 - No credit card required
-- Resets every month
+- Resets monthly on the 1st
+- Monitor usage at: https://serpapi.com/dashboard
 
 ---
 
