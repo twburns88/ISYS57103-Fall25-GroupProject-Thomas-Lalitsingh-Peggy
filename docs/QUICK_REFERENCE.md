@@ -1,12 +1,12 @@
 # AI-Project Quick Reference Card
-**Print this and keep it handy!** 📋
+**Print this and keep it handy!**
 
 ---
 
-## 🚀 Starting the App
+## Starting the App
 
 ### Step 1: Open Docker Desktop
-Look for the whale icon - must say "running" ✅
+Look for the whale icon - must say "running"
 
 ### Step 2: Open Terminal in Project Folder
 **Mac:** Right-click folder → "New Terminal at Folder"
@@ -28,28 +28,28 @@ Go to: **http://localhost:5000**
 
 ---
 
-## 🛑 Stopping the App
+## Stopping the App
 
 **In Terminal:** Press **Ctrl+C**
 
 **OR in Docker Desktop:**
-- Containers → ai-project-dev → Click Stop ⏹️
+- Containers → ai-project-dev → Click Stop
 
 ---
 
-## 🔄 Daily Workflow
+## Daily Workflow
 
-1. ✅ Open Docker Desktop (must be running)
-2. ✅ Open Terminal in project folder
-3. ✅ Run `./scripts/run_local.sh` (Mac) or `docker-compose up` (Windows)
-4. ✅ Open browser to http://localhost:5000
-5. ✅ Edit code in your editor → Save
-6. ✅ Refresh browser (F5) to see changes
-7. ✅ Stop container when done (Ctrl+C)
+1. Open Docker Desktop (must be running)
+2. Open Terminal in project folder
+3. Run `./scripts/run_local.sh` (Mac) or `docker-compose up` (Windows)
+4. Open browser to http://localhost:5000
+5. Edit code in your editor → Save
+6. Refresh browser (F5) to see changes
+7. Stop container when done (Ctrl+C)
 
 ---
 
-## 🆘 Common Problems
+## Common Problems
 
 | Problem | Solution |
 |---------|----------|
@@ -61,7 +61,7 @@ Go to: **http://localhost:5000**
 
 ---
 
-## 📁 Important Files
+## Important Files
 
 | File | What It Does |
 |------|--------------|
@@ -73,7 +73,7 @@ Go to: **http://localhost:5000**
 
 ---
 
-## 🌐 Useful URLs
+## Useful URLs
 
 | What | URL |
 |------|-----|
@@ -84,7 +84,7 @@ Go to: **http://localhost:5000**
 
 ---
 
-## 💾 Git Commands (via GitHub Desktop)
+## Git Commands (via GitHub Desktop)
 
 ### Get Latest Changes
 1. Open GitHub Desktop
@@ -101,7 +101,7 @@ Go to: **http://localhost:5000**
 
 ---
 
-## ✅ Quick Health Check
+## Quick Health Check
 
 **Is everything working?**
 - [ ] Docker Desktop shows green icon (running)
@@ -111,11 +111,11 @@ Go to: **http://localhost:5000**
 - [ ] OCR processes the image
 - [ ] Can search and see results
 
-**All checked?** You're good! 🎉
+**All checked?** You're good!
 
 ---
 
-## 📞 Need Help?
+## Need Help?
 
 1. Check `docs/TEAM_SETUP_GUIDE.md` (detailed instructions)
 2. Check `docs/DOCKER_SETUP.md` (technical details)
@@ -129,4 +129,4 @@ Go to: **http://localhost:5000**
 - Refresh browser after changes (F5)
 - Never commit `.env.development` (has API keys!)
 
-**Print this page and keep it at your desk!** 🖨️
+**Print this page and keep it at your desk!**
