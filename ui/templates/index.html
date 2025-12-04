@@ -42,23 +42,34 @@
         .main-card {
             background: white;
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             margin-bottom: 30px;
+            min-height: 600px;
+            max-height: 80vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .upload-section {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .upload-zone {
             border: 3px dashed #667eea;
             border-radius: 15px;
-            padding: 60px 20px;
+            padding: 30px 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             background: #f8f9ff;
+            max-width: 400px;
+            width: 100%;
         }
 
         .upload-zone:hover {
@@ -73,8 +84,8 @@
         }
 
         .upload-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
+            font-size: 3em;
+            margin-bottom: 15px;
         }
 
         #fileInput {
@@ -85,12 +96,12 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 12px 30px;
             border-radius: 30px;
-            font-size: 1.1em;
+            font-size: 1em;
             cursor: pointer;
             transition: transform 0.2s;
-            margin: 10px;
+            margin: 5px;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
@@ -106,10 +117,14 @@
         }
 
         .preview-image {
-            max-width: 300px;
-            max-height: 300px;
-            margin: 20px auto;
-            border-radius: 10px;
+            max-width: 400px;
+            max-height: 350px;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+            background: #f8f9ff;
+            padding: 10px;
             display: none;
         }
 
@@ -137,16 +152,19 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 10px 0;
+            max-height: 420px;
+            overflow-y: auto;
+            padding: 5px;
         }
 
         .product-card {
             background: white;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
-            padding: 15px;
+            padding: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -159,16 +177,16 @@
 
         .product-card img {
             width: 100%;
-            height: 180px;
+            height: 140px;
             object-fit: contain;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .product-title {
-            font-size: 0.95em;
+            font-size: 0.85em;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -176,31 +194,31 @@
         }
 
         .product-price {
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: #667eea;
             font-weight: bold;
-            margin: 5px 0;
+            margin: 4px 0;
         }
 
         .product-source {
             color: #666;
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
 
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
             display: none;
         }
 
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -211,37 +229,39 @@
         .error-message {
             background: #fee;
             color: #c33;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
-            margin: 20px 0;
+            margin: 10px 0;
             display: none;
+            font-size: 0.9em;
         }
 
         .success-message {
             background: #efe;
             color: #3c3;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
-            margin: 20px 0;
+            margin: 10px 0;
             display: none;
+            font-size: 0.9em;
         }
 
         .store-section {
-            margin: 30px 0;
+            margin: 8px 0;
         }
 
         .store-section h3 {
             color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.5em;
+            margin-bottom: 6px;
+            font-size: 1em;
         }
 
         .store-card {
             background: #f8f9ff;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            border-left: 3px solid #667eea;
         }
 
         .store-nearby {
@@ -249,31 +269,33 @@
         }
 
         .store-name {
-            font-size: 1.3em;
+            font-size: 0.9em;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 3px;
         }
 
         .store-price {
-            font-size: 1.5em;
+            font-size: 1em;
             color: #667eea;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 2px 0;
         }
 
         .store-details {
             color: #666;
-            margin: 5px 0;
+            margin: 2px 0;
+            font-size: 0.8em;
+            line-height: 1.3;
         }
 
         .badge {
             display: inline-block;
             background: #4caf50;
             color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin: 5px 5px 5px 0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            margin: 2px 2px 2px 0;
         }
 
         .badge-online {
@@ -294,95 +316,244 @@
 
         .product-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
         }
 
         .product-header h2 {
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .product-images {
             display: flex;
-            gap: 10px;
+            gap: 6px;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 20px 0;
+            margin: 6px 0;
         }
 
         .product-images img {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #ddd;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .app-state {
+            display: none;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .app-state.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .how-it-works-section {
+            margin: 25px auto 15px;
+            max-width: 700px;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 180px;
+            max-width: 200px;
+            text-align: center;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            border-radius: 15px;
+            border: 2px solid #e8eaff;
+            transition: transform 0.2s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-4px);
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .step-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.85em;
+            line-height: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .steps-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .step {
+                max-width: 100%;
+                min-width: auto;
+                padding: 15px;
+            }
+
+            .how-it-works-section {
+                margin: 20px auto 15px;
+            }
+
+            .step-icon {
+                font-size: 2em;
+            }
+
+            .step-number {
+                width: 24px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 0.75em;
+            }
+
+            .step-title {
+                font-size: 1em;
+            }
+
+            .step-desc {
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🔍 Product Finder</h1>
+            <h1>Out of Stock Product Finder</h1>
             <p class="subtitle">Upload a product image to find where it's available nearby</p>
         </header>
 
-        <!-- Main Upload Section -->
-        <div id="uploadSection" class="main-card">
-            <div class="upload-section">
-                <div class="upload-zone" id="uploadZone">
-                    <div class="upload-icon">📸</div>
-                    <h2>Upload Product Image</h2>
-                    <p>Click to browse or drag and drop an image here</p>
-                    <input type="file" id="fileInput" accept="image/*" capture="environment">
+        <!-- Main Container with State-Based Views -->
+        <div id="mainContainer" class="main-card">
+            <!-- Upload State -->
+            <div id="uploadState" class="app-state active">
+                <div class="upload-section">
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-icon">📸</div>
+                        <h2 style="font-size: 1.5em; margin-bottom: 10px;">Upload Product Image</h2>
+                        <p style="font-size: 0.95em;">Click to browse or drag and drop an image here</p>
+                        <input type="file" id="fileInput" accept="image/*" capture="environment">
+                    </div>
+
+                    <img id="previewImage" class="preview-image" alt="Preview">
+
+                    <!-- How It Works Section -->
+                    <div id="howItWorks" class="how-it-works-section">
+                        <h3 style="text-align: center; color: #667eea; font-size: 1.3em; margin-bottom: 20px; font-weight: 600;">
+                            How It Works
+                        </h3>
+                        <div class="steps-container">
+                            <div class="step">
+                                <div class="step-icon">📸</div>
+                                <div class="step-number">1</div>
+                                <div class="step-title">Upload Image</div>
+                                <div class="step-desc">Take or upload a photo of the shelf label of an out-of-stock product</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-icon">🔍</div>
+                                <div class="step-number">2</div>
+                                <div class="step-title">Product Lookup</div>
+                                <div class="step-desc">We instantly find matching products</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-icon">📍</div>
+                                <div class="step-number">3</div>
+                                <div class="step-title">Find Stores</div>
+                                <div class="step-desc">See where it's available nearby or online</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="errorMessage" class="error-message"></div>
+                    <div id="successMessage" class="success-message"></div>
+
+                    <div id="loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Processing your image...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results State -->
+            <div id="resultsState" class="app-state">
+                <h2 style="margin-bottom: 10px; color: #667eea; text-align: center; font-size: 1.5em;">Select Your Product</h2>
+                <p style="margin-bottom: 10px; color: #666; text-align: center; font-size: 0.95em;">Click on the product that matches what you're looking for:</p>
+                <div id="productsGrid" class="products-grid"></div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <button class="btn back-btn" onclick="resetUpload()">New Search</button>
+                </div>
+            </div>
+
+            <!-- Details State -->
+            <div id="detailsState" class="app-state">
+                <button class="btn back-btn" onclick="backToResults()" style="margin-bottom: 10px;">← Back to Results</button>
+
+                <div class="product-header">
+                    <h2 id="productTitle" style="font-size: 1.2em;"></h2>
+                    <div id="productImages" class="product-images"></div>
+                    <p id="productInfo" style="color: #666; margin-top: 3px; font-size: 0.8em;"></p>
                 </div>
 
-                <img id="previewImage" class="preview-image" alt="Preview">
-
-                <div id="errorMessage" class="error-message"></div>
-                <div id="successMessage" class="success-message"></div>
-
-                <div id="loading" class="loading">
+                <div id="loadingStores" class="loading">
                     <div class="spinner"></div>
-                    <p>Processing your image...</p>
+                    <p>Finding nearby stores...</p>
                 </div>
 
-                <div id="ocrResult" class="ocr-result">
-                    <h3>Extracted Text:</h3>
-                    <div class="extracted-text" id="extractedText"></div>
-                    <button class="btn" onclick="searchProducts()">Search for Products</button>
-                    <button class="btn back-btn" onclick="resetUpload()">Upload Different Image</button>
+                <div id="storesContainer" style="flex: 1; overflow-y: auto; margin-top: 5px;">
+                    <div id="nearbyStores" class="store-section"></div>
+                    <div id="onlineStores" class="store-section"></div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Product Search Results -->
-        <div id="searchResults" class="main-card hidden">
-            <h2 style="margin-bottom: 20px; color: #667eea;">Select Your Product</h2>
-            <p style="margin-bottom: 20px; color: #666;">Click on the product that matches what you're looking for:</p>
-            <div id="productsGrid" class="products-grid"></div>
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="btn back-btn" onclick="backToOCR()">Back to Search</button>
-            </div>
-        </div>
-
-        <!-- Product Details with Store Locations -->
-        <div id="productDetails" class="main-card">
-            <button class="btn back-btn" onclick="backToResults()" style="margin-bottom: 20px;">← Back to Results</button>
-
-            <div class="product-header">
-                <h2 id="productTitle"></h2>
-                <div id="productImages" class="product-images"></div>
-                <p id="productInfo" style="color: #666; margin-top: 10px;"></p>
-            </div>
-
-            <div id="loadingStores" class="loading">
-                <div class="spinner"></div>
-                <p>Finding nearby stores...</p>
-            </div>
-
-            <div id="storesContainer">
-                <div id="nearbyStores" class="store-section"></div>
-                <div id="onlineStores" class="store-section"></div>
             </div>
         </div>
     </div>
@@ -390,6 +561,24 @@
     <script>
         let currentSearchQuery = '';
         let currentProducts = [];
+
+        // State management function
+        function showState(stateName) {
+            // Hide all states
+            document.getElementById('uploadState').classList.remove('active');
+            document.getElementById('resultsState').classList.remove('active');
+            document.getElementById('detailsState').classList.remove('active');
+
+            // Show requested state with fade-in animation
+            const targetState = document.getElementById(stateName + 'State');
+            targetState.classList.add('active');
+            targetState.classList.add('fade-in');
+
+            // Remove fade-in class after animation completes
+            setTimeout(() => {
+                targetState.classList.remove('fade-in');
+            }, 300);
+        }
 
         // Upload zone drag and drop
         const uploadZone = document.getElementById('uploadZone');
@@ -429,6 +618,10 @@
                 return;
             }
 
+            // Hide all upload UI elements for clean transition
+            uploadZone.style.display = 'none';
+            document.getElementById('howItWorks').style.display = 'none';
+
             // Show preview
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -459,16 +652,15 @@
 
                 if (response.ok) {
                     currentSearchQuery = data.extracted_text;
-                    document.getElementById('extractedText').textContent = data.extracted_text;
-                    document.getElementById('ocrResult').style.display = 'block';
-                    showSuccess('Text extracted successfully! Review and click "Search for Products"');
+                    // Auto-trigger product search immediately
+                    searchProducts();
                 } else {
                     showError(data.error || 'Failed to process image');
                     previewImage.style.display = 'none';
+                    showLoading(false);
                 }
             } catch (error) {
                 showError('Network error: ' + error.message);
-            } finally {
                 showLoading(false);
             }
         }
@@ -496,14 +688,14 @@
                 if (response.ok) {
                     currentProducts = data.products;
                     displayProducts(data.products);
-                    document.getElementById('uploadSection').classList.add('hidden');
-                    document.getElementById('searchResults').classList.remove('hidden');
+                    showLoading(false);
+                    showState('results');
                 } else {
                     showError(data.error || 'Failed to search products');
+                    showLoading(false);
                 }
             } catch (error) {
                 showError('Network error: ' + error.message);
-            } finally {
                 showLoading(false);
             }
         }
@@ -535,8 +727,7 @@
                 return;
             }
 
-            document.getElementById('searchResults').classList.add('hidden');
-            document.getElementById('productDetails').style.display = 'block';
+            showState('details');
             document.getElementById('loadingStores').style.display = 'block';
             document.getElementById('storesContainer').style.display = 'none';
 
@@ -615,31 +806,32 @@
                 <div class="store-card ${isNearby ? 'store-nearby' : ''}">
                     <div class="store-name">${store.name} ${badge}</div>
                     <div class="store-price">${store.price}</div>
-                    ${store.total !== store.price ? `<div class="store-details">Total with shipping: ${store.total}</div>` : ''}
-                    ${store.rating ? `<div class="store-details">★ ${store.rating} (${store.reviews || 0} reviews)</div>` : ''}
+                    ${store.total !== store.price ? `<div class="store-details">Total: ${store.total}</div>` : ''}
+                    ${store.rating ? `<div class="store-details">★ ${store.rating} (${store.reviews || 0})</div>` : ''}
                     <div class="store-details">${details}</div>
-                    ${store.link ? `<a href="${store.link}" target="_blank" class="btn" style="display: inline-block; margin-top: 10px; padding: 10px 20px; font-size: 0.9em;">View at Store →</a>` : ''}
+                    ${store.link ? `<a href="${store.link}" target="_blank" class="btn" style="display: inline-block; margin-top: 5px; padding: 6px 12px; font-size: 0.8em;">View →</a>` : ''}
                 </div>
             `;
         }
 
         function backToResults() {
-            document.getElementById('productDetails').style.display = 'none';
-            document.getElementById('searchResults').classList.remove('hidden');
-        }
-
-        function backToOCR() {
-            document.getElementById('searchResults').classList.add('hidden');
-            document.getElementById('uploadSection').classList.remove('hidden');
+            showState('results');
         }
 
         function resetUpload() {
-            document.getElementById('ocrResult').style.display = 'none';
-            document.getElementById('previewImage').style.display = 'none';
-            document.getElementById('fileInput').value = '';
+            // Show all upload UI elements
+            uploadZone.style.display = 'block';
+            document.getElementById('howItWorks').style.display = 'block';
+
+            // Clear preview and form
+            previewImage.style.display = 'none';
+            fileInput.value = '';
             currentSearchQuery = '';
             hideError();
             hideSuccess();
+
+            // Return to upload state
+            showState('upload');
         }
 
         function showLoading(show) {
