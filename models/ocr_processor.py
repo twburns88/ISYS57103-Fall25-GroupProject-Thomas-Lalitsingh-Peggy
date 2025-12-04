@@ -45,10 +45,18 @@ def extract_text_from_image(image_path, api_key):
         
         # Parse response
         if response.status_code != 200:
+            # Try to extract detailed error message from response
+            error_message = f'API request failed with status code {response.status_code}'
+            if 'error' in result:
+                error_details = result['error']
+                if 'message' in error_details:
+                    error_message += f': {error_details["message"]}'
+                if 'status' in error_details:
+                    error_message += f' ({error_details["status"]})'
             return {
                 'success': False,
                 'text': '',
-                'error': f'API request failed with status code {response.status_code}'
+                'error': error_message
             }
         
         if 'responses' in result and result['responses']:
