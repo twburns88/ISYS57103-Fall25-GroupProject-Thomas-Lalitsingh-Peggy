@@ -1,7 +1,7 @@
 from serpapi import GoogleSearch
 from backend.config import SERPAPI_KEY
 
-def get_product_locations(page_token: str) -> dict:
+def get_product_locations(page_token: str, user_location: str = None) -> dict:
     """
     Query Google Immersive Product API via SerpAPI for location/availability data.
     Uses an immersive product page token to get detailed product info including stores.
@@ -11,6 +11,7 @@ def get_product_locations(page_token: str) -> dict:
 
     Args:
         page_token (str): The immersive product page token from shopping results.
+        user_location (str, optional): The location to tailor store results. Defaults to None.
     Returns:
         dict: A dictionary containing product location/availability results.
     """
@@ -21,6 +22,10 @@ def get_product_locations(page_token: str) -> dict:
         "page_token": page_token,
         "api_key": SERPAPI_KEY,
     }
+
+    # Add location if provided
+    if user_location:
+        params["location"] = user_location
 
     # Perform the search and get results
     search = GoogleSearch(params)

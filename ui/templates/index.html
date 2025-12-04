@@ -46,8 +46,9 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             min-height: 600px;
-            max-height: 80vh;
-            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
+            overflow-x: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -273,6 +274,36 @@
             font-size: 1em;
         }
 
+        .location-notice {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 10px 0;
+            font-size: 0.85em;
+            color: #1976d2;
+            line-height: 1.4;
+        }
+
+        .location-notice-compact {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 8px 0 6px 0;
+            color: #1976d2;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .back-btn-compact {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto 0 auto;
+            padding: 8px 16px;
+            font-size: 0.85em;
+        }
+
         .store-card {
             background: #f8f9ff;
             border-radius: 8px;
@@ -454,7 +485,8 @@
         .app-state {
             display: none;
             flex: 1;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .app-state.active {
@@ -463,64 +495,188 @@
         }
 
         .how-it-works-section {
-            margin: 25px auto 15px;
-            max-width: 700px;
+            margin: 15px auto 10px;
+            max-width: 100%;
         }
 
         .steps-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
+            gap: 12px;
+            flex-wrap: nowrap;
         }
 
         .step {
             flex: 1;
-            min-width: 180px;
-            max-width: 200px;
+            min-width: 0;
             text-align: center;
-            padding: 20px 15px;
+            padding: 12px 10px;
             background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
-            border-radius: 15px;
+            border-radius: 12px;
             border: 2px solid #e8eaff;
             transition: transform 0.2s ease;
         }
 
         .step:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
             border-color: #667eea;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
         }
 
         .step-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2em;
+            margin-bottom: 6px;
         }
 
         .step-number {
             display: inline-block;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             background: #667eea;
             color: white;
             border-radius: 50%;
-            font-size: 0.85em;
-            line-height: 28px;
-            margin-bottom: 10px;
+            font-size: 0.75em;
+            line-height: 24px;
+            margin-bottom: 6px;
             font-weight: bold;
         }
 
         .step-title {
             font-weight: 600;
             color: #333;
-            font-size: 1.05em;
-            margin-bottom: 8px;
+            font-size: 0.95em;
+            margin-bottom: 4px;
         }
 
         .step-desc {
             color: #666;
+            font-size: 0.8em;
+            line-height: 1.3;
+        }
+
+        .location-section {
+            background: transparent;
+            border-radius: 0;
+            padding: 0 0 12px 0;
+            margin: 0 0 15px 0;
+            border-bottom: 1px solid #e8eaff;
+            transition: all 0.3s ease;
+        }
+
+        .location-section.collapsed {
+            padding: 0 0 8px 0;
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .location-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .location-current {
+            color: #666;
             font-size: 0.85em;
-            line-height: 1.4;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+
+        .location-toggle {
+            color: #667eea;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .location-section.collapsed .location-toggle {
+            transform: rotate(180deg);
+        }
+
+        .location-controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin-top: 12px;
+            max-height: 200px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .location-section.collapsed .location-controls {
+            max-height: 0;
+            margin-top: 0;
+            opacity: 0;
+        }
+
+        .location-input {
+            flex: 1;
+            min-width: 180px;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            transition: border-color 0.3s;
+        }
+
+        .location-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .location-status {
+            text-align: center;
+            width: 100%;
+            margin-top: 8px;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease, padding 0.3s ease;
+        }
+
+        .location-status.active {
+            max-height: 100px;
+        }
+
+        .location-section.collapsed .location-status {
+            max-height: 0;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .location-status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .location-status.info {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .btn-location {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            white-space: nowrap;
+            padding: 8px 16px;
+            font-size: 0.9em;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
@@ -592,6 +748,26 @@
 
         <!-- Main Container with State-Based Views -->
         <div id="mainContainer" class="main-card">
+            <!-- Location Selection Section -->
+            <div class="location-section" id="locationSection">
+                <div class="location-header" onclick="toggleLocationSection()">
+                    <div class="location-title">
+                        📍 Location
+                        <span class="location-current" id="locationDisplay"></span>
+                    </div>
+                    <span class="location-toggle">▼</span>
+                </div>
+                <div class="location-controls">
+                    <button class="btn btn-location" onclick="requestGeolocation()">Use My Location</button>
+                    <input type="text"
+                           id="manualLocationInput"
+                           class="location-input"
+                           placeholder="Or enter city (e.g., San Francisco or New York, NY)"
+                           onkeypress="handleLocationInputKeyPress(event)">
+                    <button class="btn btn-small" onclick="setManualLocation()">Set Location</button>
+                </div>
+                <div id="locationStatus" class="location-status"></div>
+            </div>
             <!-- Upload State -->
             <div id="uploadState" class="app-state active">
                 <div class="upload-section">
@@ -639,7 +815,7 @@
 
                     <!-- How It Works Section -->
                     <div id="howItWorks" class="how-it-works-section">
-                        <h3 style="text-align: center; color: #667eea; font-size: 1.3em; margin-bottom: 20px; font-weight: 600;">
+                        <h3 style="text-align: center; color: #667eea; font-size: 1.1em; margin-bottom: 12px; font-weight: 600;">
                             How It Works
                         </h3>
                         <div class="steps-container">
@@ -665,6 +841,9 @@
                     </div>
 
                     <div id="errorMessage" class="error-message"></div>
+                    <div id="errorActions" class="error-actions" style="display: none; text-align: center; margin-top: 10px;">
+                        <button class="btn back-btn" onclick="resetUpload()">Try Again</button>
+                    </div>
                     <div id="successMessage" class="success-message"></div>
 
                     <div id="loading" class="loading">
@@ -686,8 +865,6 @@
 
             <!-- Details State -->
             <div id="detailsState" class="app-state">
-                <button class="btn back-btn" onclick="backToResults()" style="margin-bottom: 10px;">← Back to Results</button>
-
                 <div class="product-header">
                     <h2 id="productTitle" style="font-size: 1.2em;"></h2>
                     <div id="productImages" class="product-images"></div>
@@ -703,6 +880,13 @@
                     <div id="nearbyStores" class="store-section"></div>
                     <div id="onlineStores" class="store-section"></div>
                 </div>
+
+                <div id="locationNotice" class="location-notice-compact" style="display: none;">
+                    <span style="margin-right: 3px;">📍</span>
+                    <span style="font-size: 0.75em;">Results for <strong id="displayedLocation"></strong>. You may need to select your store on the retailer's website.</span>
+                </div>
+
+                <button class="btn back-btn-compact" onclick="backToResults()">← Back to Results</button>
             </div>
         </div>
     </div>
@@ -711,6 +895,7 @@
         let currentSearchQuery = '';
         let currentProducts = [];
         let cameraStream = null;
+        let userLocation = null; // Will store the user's location
 
         // State management function
         function showState(stateName) {
@@ -843,12 +1028,22 @@
             hideError();
 
             try {
+                // Prepare request body with optional location
+                const requestBody = {
+                    query: currentSearchQuery
+                };
+
+                // Add location if user has set it
+                if (userLocation) {
+                    requestBody.location = userLocation;
+                }
+
                 const response = await fetch('/search', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ query: currentSearchQuery })
+                    body: JSON.stringify(requestBody)
                 });
 
                 const data = await response.json();
@@ -900,7 +1095,13 @@
             document.getElementById('storesContainer').style.display = 'none';
 
             try {
-                const response = await fetch(`/product/${encodeURIComponent(product.page_token)}`);
+                // Build URL with location parameter if available
+                let url = `/product/${encodeURIComponent(product.page_token)}`;
+                if (userLocation) {
+                    url += `?location=${encodeURIComponent(userLocation)}`;
+                }
+
+                const response = await fetch(url);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -927,6 +1128,12 @@
             if (data.product.rating) infoText.push(`★ ${data.product.rating} (${data.product.reviews || 0} reviews)`);
             if (data.product.price_range) infoText.push(`Price Range: ${data.product.price_range}`);
             document.getElementById('productInfo').textContent = infoText.join(' • ');
+
+            // Show location notice
+            if (userLocation) {
+                document.getElementById('displayedLocation').textContent = userLocation;
+                document.getElementById('locationNotice').style.display = 'block';
+            }
 
             // Product images
             const imagesContainer = document.getElementById('productImages');
@@ -1117,12 +1324,15 @@
 
         function showError(message) {
             const errorEl = document.getElementById('errorMessage');
+            const errorActionsEl = document.getElementById('errorActions');
             errorEl.textContent = message;
             errorEl.style.display = 'block';
+            errorActionsEl.style.display = 'block';
         }
 
         function hideError() {
             document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('errorActions').style.display = 'none';
         }
 
         function showSuccess(message) {
@@ -1133,6 +1343,311 @@
 
         function hideSuccess() {
             document.getElementById('successMessage').style.display = 'none';
+        }
+
+        // Location functions
+        function toggleLocationSection() {
+            const section = document.getElementById('locationSection');
+            section.classList.toggle('collapsed');
+        }
+
+        function updateLocationDisplay(location) {
+            const displayEl = document.getElementById('locationDisplay');
+            if (location) {
+                displayEl.textContent = location;
+            } else {
+                displayEl.textContent = 'Not set - click to set location';
+            }
+        }
+
+        function showLocationStatus(message, type = 'info') {
+            const statusEl = document.getElementById('locationStatus');
+            statusEl.textContent = message;
+            statusEl.className = 'location-status active ' + type;
+        }
+
+        function hideLocationStatus() {
+            const statusEl = document.getElementById('locationStatus');
+            statusEl.className = 'location-status';
+        }
+
+        async function requestGeolocation() {
+            if (!navigator.geolocation) {
+                showLocationStatus('Geolocation is not supported by your browser', 'info');
+                return;
+            }
+
+            showLocationStatus('Getting your location...', 'info');
+
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    // Use reverse geocoding to get city name
+                    try {
+                        const cityName = await reverseGeocode(lat, lon);
+                        userLocation = cityName;
+                        updateLocationDisplay(cityName);
+                        showLocationStatus(`Location set to: ${cityName}`, 'success');
+                        // Clear the manual input field
+                        document.getElementById('manualLocationInput').value = '';
+                    } catch (error) {
+                        console.error('Reverse geocoding error:', error);
+                        // Fallback: use coordinates
+                        userLocation = `${lat},${lon}`;
+                        updateLocationDisplay(`${lat},${lon}`);
+                        showLocationStatus(`Location set using coordinates`, 'success');
+                        // Clear the manual input field
+                        document.getElementById('manualLocationInput').value = '';
+                    }
+                },
+                (error) => {
+                    console.error('Geolocation error:', error);
+                    let errorMessage = 'Unable to get your location. ';
+
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage += 'Please allow location access in your browser settings.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage += 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage += 'Location request timed out.';
+                            break;
+                        default:
+                            errorMessage += 'An unknown error occurred.';
+                    }
+
+                    showLocationStatus(errorMessage, 'info');
+                },
+                {
+                    enableHighAccuracy: false,
+                    timeout: 10000,
+                    maximumAge: 300000 // Cache for 5 minutes
+                }
+            );
+        }
+
+        async function reverseGeocode(lat, lon) {
+            // Using Nominatim (OpenStreetMap) for reverse geocoding - free and no API key required
+            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`;
+
+            const response = await fetch(url, {
+                headers: {
+                    'User-Agent': 'ProductFinderApp/1.0'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Reverse geocoding failed');
+            }
+
+            const data = await response.json();
+
+            // Extract city and state from the address
+            const address = data.address;
+            let locationString = '';
+
+            if (address.city) {
+                locationString = address.city;
+            } else if (address.town) {
+                locationString = address.town;
+            } else if (address.county) {
+                locationString = address.county;
+            }
+
+            if (address.state) {
+                locationString += (locationString ? ', ' : '') + address.state;
+            }
+
+            if (address.country) {
+                locationString += (locationString ? ', ' : '') + address.country;
+            }
+
+            return locationString || `${lat}, ${lon}`;
+        }
+
+        async function setManualLocation() {
+            const input = document.getElementById('manualLocationInput');
+            const location = input.value.trim();
+
+            if (!location) {
+                showLocationStatus('Please enter a city name', 'info');
+                return;
+            }
+
+            showLocationStatus('Validating location...', 'info');
+
+            // Validate and format the location
+            const validatedLocation = await validateAndFormatLocation(location);
+
+            if (validatedLocation.isValid) {
+                userLocation = validatedLocation.formatted;
+                updateLocationDisplay(validatedLocation.formatted);
+                showLocationStatus(`Location set to: ${validatedLocation.formatted}`, 'success');
+                input.value = validatedLocation.formatted; // Update input with formatted version
+            } else {
+                showLocationStatus(validatedLocation.error, 'info');
+            }
+        }
+
+        async function validateAndFormatLocation(locationInput) {
+            // Clean up input
+            let location = locationInput.trim();
+
+            // If empty, return error
+            if (!location) {
+                return {
+                    isValid: false,
+                    error: 'Please enter a location'
+                };
+            }
+
+            // Check if it has at least city and state/country info
+            const parts = location.split(',').map(p => p.trim()).filter(p => p);
+
+            // If only one part (e.g., "San Francisco"), try to geocode it
+            if (parts.length === 1) {
+                showLocationStatus('Incomplete location. Attempting to find full address...', 'info');
+
+                try {
+                    const geocoded = await geocodeLocation(location);
+                    if (geocoded.success) {
+                        return {
+                            isValid: true,
+                            formatted: geocoded.formatted
+                        };
+                    } else {
+                        return {
+                            isValid: false,
+                            error: `Could not find "${location}". Please include state/country (e.g., "San Francisco, CA" or "San Francisco, California, USA")`
+                        };
+                    }
+                } catch (error) {
+                    return {
+                        isValid: false,
+                        error: `Could not validate "${location}". Please include state/country (e.g., "San Francisco, CA")`
+                    };
+                }
+            }
+
+            // If it has 2 parts, assume it's "City, State" and add USA
+            if (parts.length === 2) {
+                const formatted = `${parts[0]}, ${parts[1]}, United States`;
+
+                // Verify this location exists
+                try {
+                    const geocoded = await geocodeLocation(formatted);
+                    if (geocoded.success) {
+                        return {
+                            isValid: true,
+                            formatted: geocoded.formatted
+                        };
+                    } else {
+                        // If verification fails, still accept it but warn user
+                        return {
+                            isValid: true,
+                            formatted: formatted
+                        };
+                    }
+                } catch (error) {
+                    // On error, still accept the formatted version
+                    return {
+                        isValid: true,
+                        formatted: formatted
+                    };
+                }
+            }
+
+            // If it has 3+ parts, assume it's complete
+            return {
+                isValid: true,
+                formatted: location
+            };
+        }
+
+        async function geocodeLocation(locationQuery) {
+            // Using Nominatim for forward geocoding
+            // Add addressdetails to get structured data
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationQuery)}&limit=5&addressdetails=1`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'User-Agent': 'ProductFinderApp/1.0'
+                    }
+                });
+
+                if (!response.ok) {
+                    return { success: false };
+                }
+
+                const data = await response.json();
+
+                if (data.length === 0) {
+                    return { success: false };
+                }
+
+                // Find the best result - prefer cities over other types
+                let bestResult = null;
+                for (const result of data) {
+                    const type = result.type;
+                    const osm_type = result.osm_type;
+
+                    // Prefer cities, towns, villages over other types
+                    if (type === 'city' || type === 'town' || type === 'village' ||
+                        type === 'municipality' || osm_type === 'relation' && result.class === 'boundary') {
+                        bestResult = result;
+                        break;
+                    }
+                }
+
+                // If no city found, use first result
+                if (!bestResult) {
+                    bestResult = data[0];
+                }
+
+                // Use address details for better formatting
+                const address = bestResult.address;
+                let formatted = '';
+
+                // Build location string from address components
+                const city = address.city || address.town || address.village || address.municipality || address.county;
+                const state = address.state;
+                const country = address.country;
+
+                if (city && state && country) {
+                    formatted = `${city}, ${state}, ${country}`;
+                } else if (city && state) {
+                    formatted = `${city}, ${state}`;
+                } else if (city && country) {
+                    formatted = `${city}, ${country}`;
+                } else {
+                    // Fallback to display name but clean it up
+                    const displayParts = bestResult.display_name.split(', ');
+                    if (displayParts.length >= 3) {
+                        formatted = `${displayParts[0]}, ${displayParts[displayParts.length - 2]}, ${displayParts[displayParts.length - 1]}`;
+                    } else {
+                        formatted = bestResult.display_name;
+                    }
+                }
+
+                return {
+                    success: true,
+                    formatted: formatted
+                };
+            } catch (error) {
+                console.error('Geocoding error:', error);
+                return { success: false };
+            }
+        }
+
+        function handleLocationInputKeyPress(event) {
+            if (event.key === 'Enter') {
+                setManualLocation();
+            }
         }
     </script>
 </body>

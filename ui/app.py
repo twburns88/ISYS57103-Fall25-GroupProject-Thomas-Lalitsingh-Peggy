@@ -126,13 +126,20 @@ def search_products():
 
     data = request.get_json()
     query = data.get('query', '').strip()
+    location = data.get('location', '').strip()
 
     if not query:
         return jsonify({'error': 'Search query is required'}), 400
 
+    if not location:
+        return jsonify({'error': 'Please set your location before searching'}), 400
+
     try:
+        # Use location from request
+        search_location = location
+
         # Search for products using SerpAPI
-        results = get_product_results(query=query, user_location=USER_LOCATION)
+        results = get_product_results(query=query, user_location=search_location)
 
         if not results or 'shopping_results' not in results:
             return jsonify({
@@ -158,7 +165,8 @@ def search_products():
         return jsonify({
             'success': True,
             'products': products,
-            'count': len(products)
+            'count': len(products),
+            'location_used': search_location
         })
 
     except Exception as e:
@@ -172,9 +180,15 @@ def get_product_details(page_token):
     Uses the immersive product page token from search results
     """
 
+    # Get location from query parameter if provided
+    location = request.args.get('location', '').strip()
+
+    if not location:
+        return jsonify({'error': 'Please set your location before viewing product details'}), 400
+
     try:
-        # Get detailed product data
-        location_data = get_product_locations(page_token)
+        # Get detailed product data with location
+        location_data = get_product_locations(page_token, user_location=location)
 
         if 'error' in location_data:
             return jsonify({'error': location_data['error']}), 500
