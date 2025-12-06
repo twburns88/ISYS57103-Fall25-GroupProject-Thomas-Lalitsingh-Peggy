@@ -8,11 +8,11 @@ For this project, we propose to build an agentic AI system to solve one of the m
 
 ## System Design
 
-The system uses a **multi-agent approach** with specialized AI tasks:
+The system uses a **multi-API call approach** with specialized AI tasks:
 
--  **Product Identification Agent** – Detects and identifies products from a phone camera.  
--  **Retailer Data Agent** – Searches retailer APIs or websites for stock availability.  
--  **Ranking Agent** – Ranks results by distance, price, and availability.  
+-  **Product Identification** – Detects and identifies products from a phone camera.  
+-  **Retailer Data** – Searches retailer APIs or websites for stock availability.  
+-  **Ranking** – Ranks results by distance, price, and availability.  
 
 ---
 
